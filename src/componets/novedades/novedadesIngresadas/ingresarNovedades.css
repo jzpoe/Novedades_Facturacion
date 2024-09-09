@@ -1,0 +1,81 @@
+
+
+  
+  .container-novedad {
+    max-width: 1200px; /* Establece un tamaño máximo para acomodar las columnas */
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 40px;
+    height: 100%;
+    padding: 20px;
+    background-image: url("img/ingresarNovedad/cosmos.png");
+
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+  }
+  
+  .formulario-novedad {
+    
+    width: 80%;
+    display: grid;
+    grid-template-columns: 1fr 3fr; /* Dos columnas de igual tamaño */
+    gap: 20px 40px; /* Espacio entre filas y columnas */
+  }
+  
+  .formulario-novedad label {
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .formulario-novedad input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+  }
+  
+  .formulario-novedad input:focus {
+    outline: none;
+    border-color: #6c63ff;
+    box-shadow: 0 0 5px rgba(108, 99, 255, 0.4);
+  }
+  
+  /* Cada label e input forman un par en cada columna */
+  .formulario-novedad label,
+  .formulario-novedad input {
+    grid-column: span 1;
+    color: #ccc;
+  }
+
+  .boton-novedad{
+    display: flex;
+    justify-content: end;
+    margin-top: 20px; /* Añadir un espacio superior si es necesario */
+
+  }
+
+  .novedad-boton{
+    background-color: red;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 100px;
+    height: 40px;
+    color: white; /* Cambia el color del texto a blanco */
+    cursor: pointer; /* Añade un cursor de mano al pasar por el botón */
+     
+      }
+  
+  /* Estilo opcional para pantallas más pequeñas */
+  @media (max-width: 600px) {
+    .formulario-novedad {
+      grid-template-columns: 1fr; /* Cambia a una columna en pantallas pequeñas */
+    }
+
+    .container-novedad{
+      width: 300px;
+      background-image: url("img/ingresarNovedad/cosmos-5809271_1280.png");
+    }
+  }

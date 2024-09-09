@@ -1,0 +1,42 @@
+/* Estilos generales del navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between; /* Logo a la izquierda y opciones a la derecha */
+    align-items: center;
+    padding: 15px 30px; /* Espaciado interno */
+    background-color: #3e1574; /* Color de fondo del navbar */
+    color: white;
+  }
+
+  .navbar-logo .logo{
+    width: 50px;
+    height: 50px;
+  }
+  
+  /* Estilo para el logo */
+  .navbar-logo img {
+    width: 120px; /* Tamaño del logo */
+  }
+  
+  /* Estilo para las opciones del menú */
+  .navbar-options {
+    list-style: none; /* Eliminamos los puntos de lista */
+    display: flex; /* Usamos flexbox para alinear horizontalmente */
+    gap: 20px; /* Espaciado entre los elementos del menú */
+  }
+  
+  .navbar-options li {
+    margin: 0; /* Remover márgenes */
+  }
+  
+  .navbar-options a {
+    text-decoration: none; /* Eliminamos subrayado en los links */
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+  }
+  
+  .navbar-options a:hover {
+    color: #6c63ff; /* Cambiar el color al pasar el cursor */
+    transition: color 0.3s ease; /* Animación de transición */
+  }
