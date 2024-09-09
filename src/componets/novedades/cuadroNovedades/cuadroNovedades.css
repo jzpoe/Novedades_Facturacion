@@ -108,6 +108,9 @@ button {
  @media (max-width: 600px) {
     .container-novedades-ingresadas {
         width: 300px;
+      background-repeat: repeat; /* Repite la imagen tanto horizontal como verticalmente */
+    background-size: auto; /* Ajusta el tamaño de la imagen según su tamaño original */
+    background-position: top left; /* Alinea la imagen en la esquina superior izquierda */
     }
   }
 
