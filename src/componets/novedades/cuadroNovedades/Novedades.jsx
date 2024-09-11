@@ -11,7 +11,7 @@ export const Novedades = ({novedades, setNovedades}) => {
   useEffect(() => {
     const fetchNovedades = async () => {
       try {
-        const response = await axios.get("http://localhost:5100/novedades");
+        const response = await axios.get("https://novedades-facturacion-backend.vercel.app/novedades");
       
         setNovedades(response.data); // Guarda los datos en el estado
         
