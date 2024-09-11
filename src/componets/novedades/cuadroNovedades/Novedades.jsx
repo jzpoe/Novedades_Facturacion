@@ -1,16 +1,30 @@
 import { useEffect, useState } from "react";
 import "./cuadroNovedades.css";
-import { novedadesData } from "../../api/novedadesData.js";
+//import { novedadesData } from "../../api/novedadesData.js";
 import { GrUpdate } from "react-icons/gr";
+import axios from "axios";
 
-export const Novedades = () => {
-  const [novedades, setNovedades] = useState([]);
+export const Novedades = ({novedades, setNovedades}) => {
+  //const [novedades, setNovedades] = useState([]);
   const [tareasFinalizadas, setTareasFinalizadas] = useState({});
 
-  
+  useEffect(() => {
+    const fetchNovedades = async () => {
+      try {
+        const response = await axios.get("http://localhost:5100/novedades");
+      
+        setNovedades(response.data); // Guarda los datos en el estado
+        
+      } catch (error) {
+        console.error("Error al obtener las novedades", error);
+      }
+    };
+    fetchNovedades(); // Llamar a la función para obtener los datos
+  }, []); // El array vacío [] asegura que esto solo se ejecute una vez al montar el componente
+
 
   useEffect(() => {
-    setNovedades(novedadesData);
+    setNovedades(novedades);
 
     const guardarEstadoTarea = JSON.parse(localStorage.getItem("tareasFinalizadas"));
     if(guardarEstadoTarea){

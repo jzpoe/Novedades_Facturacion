@@ -1,31 +1,59 @@
+import { useState } from "react";
 import { Novedades } from "../cuadroNovedades/Novedades";
 import "./ingresarNovedades.css";
+import axios from 'axios';
 
 export const IngresarNovedades = () => {
+  const [nextData, setNextData] = useState({
+    nombre: "",
+    ciudad: "",
+    novedad: "",
+    activoDevuelto: "",
+    activoNuevo: ""
+  });
+
+  const [novedades, setNovedades] = useState([]);  // Estado compartido para las novedades
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;  
+    setNextData((prevState) => ({
+      ...prevState,
+      [name]: value
+    }));
+  };
+
+  const agregarNovedad  = async (e) => {
+    e.preventDefault();  
+    try {
+      const response = await axios.post('http://localhost:5100/novedades', nextData);
+      setNovedades(prevNovedades => [...prevNovedades, response.data]);  // Actualiza el estado de novedades
+    } catch (error) {
+      console.error("Error al enviar datos del formulario", error);
+    }
+  };
   return (
     <>
-    <div className="container-novedad">
-      <div className="formulario-novedad">
-        <label htmlFor="">Nombre</label>
-        <input type="text" />
-        <label htmlFor="">ciudad</label>
-        <input type="text" />
-        <label htmlFor="">Novedad</label>
-        <input type="text" />
-        <label htmlFor="">Activo devuelto</label>
-        <input type="text" />
-        <label htmlFor="">Activo nuevo</label>
-        <input type="text" />
+      <form onSubmit={agregarNovedad}>
+        <div className="container-novedad">
+          <div className="formulario-novedad">
+            <label>Nombre</label>
+            <input type="text" name="nombre" value={nextData.nombre} onChange={handleChange} />
+            <label>Ciudad</label>
+            <input type="text" name="ciudad" value={nextData.ciudad} onChange={handleChange} />
+            <label>Novedad</label>
+            <input type="text" name="novedad" value={nextData.novedad} onChange={handleChange} />
+            <label>Activo devuelto</label>
+            <input type="text" name="activoDevuelto" value={nextData.activoDevuelto} onChange={handleChange} />
+            <label>Activo nuevo</label>
+            <input type="text" name="activoNuevo" value={nextData.activoNuevo} onChange={handleChange} />
 
-        <div></div>
-        <div className="boton-novedad">
-          <button className="novedad-boton">Agregar</button>
+            <div className="boton-novedad">
+              <button type="submit" className="novedad-boton">Agregar</button> {/* Tipo submit */}
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
-    
-     <Novedades/>
+        <Novedades novedades={novedades} setNovedades={setNovedades} />  {/* Pasamos el estado y el setter */}
+      </form>
     </>
-   
   );
 };
