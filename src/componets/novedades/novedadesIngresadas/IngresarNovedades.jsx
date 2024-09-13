@@ -13,6 +13,7 @@ export const IngresarNovedades = () => {
   });
 
   const [novedades, setNovedades] = useState([]);  // Estado compartido para las novedades
+  
 
   const handleChange = (e) => {
     const { name, value } = e.target;  
@@ -22,14 +23,26 @@ export const IngresarNovedades = () => {
     }));
   };
 
+  const limpiarFormulario =(  )=>{
+    setNextData({
+      nombre: "",
+      ciudad: "",
+      novedad: "",
+      activoDevuelto: "",
+      activoNuevo: ""
+    })
+  }
+
   const agregarNovedad  = async (e) => {
     e.preventDefault();  
     try {
       const response = await axios.post('https://novedades-facturacion-backend.vercel.app/novedades', nextData);
       setNovedades(prevNovedades => [...prevNovedades, response.data]);  // Actualiza el estado de novedades
+      limpiarFormulario();
     } catch (error) {
       console.error("Error al enviar datos del formulario", error);
     }
+   
   };
   return (
     <>
